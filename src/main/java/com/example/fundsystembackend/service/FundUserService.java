@@ -16,5 +16,6 @@ public interface FundUserService extends IService<FundUser> {
 
     ApiResult loginUser(FundUser fundUser);
     ApiResult logoutUser(FundUser fundUser);
+    ApiResult register(FundUser fundUser);
 
 }

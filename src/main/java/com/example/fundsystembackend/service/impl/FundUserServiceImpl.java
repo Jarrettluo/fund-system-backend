@@ -5,6 +5,7 @@ import com.example.fundsystembackend.mapper.FunduserMapper;
 import com.example.fundsystembackend.service.FundUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.fundsystembackend.utils.result.ApiResult;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,6 +18,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class FundUserServiceImpl extends ServiceImpl<FunduserMapper, FundUser> implements FundUserService {
+
+    @Autowired
+    private FunduserMapper funduserMapper;
+
     @Override
     public ApiResult loginUser(FundUser fundUser) {
         return null;
@@ -25,5 +30,23 @@ public class FundUserServiceImpl extends ServiceImpl<FunduserMapper, FundUser> i
     @Override
     public ApiResult logoutUser(FundUser fundUser) {
         return null;
+    }
+
+    @Override
+    public ApiResult register(FundUser fundUser) {
+        if(fundUser.getUserId() == null || fundUser.getUserId().equals("")) {
+            return ApiResult.error(1201, "userId不能为空");
+        }
+        if(fundUser.getUserName() == null || fundUser.getUserName().equals("")){
+            return ApiResult.error(1201, "uername不能为空");
+        }
+        if(fundUser.getUserPassword() == null || fundUser.getUserPassword().equals("")) {
+            return ApiResult.error(1201, "passWord不能为空");
+        }
+        if(fundUser.getUserTelephone() == null || fundUser.getUserTelephone().equals("")) {
+            return ApiResult.error(1201, "telephone不能为空");
+        }
+        funduserMapper.insert(fundUser);
+        return ApiResult.success("success");
     }
 }

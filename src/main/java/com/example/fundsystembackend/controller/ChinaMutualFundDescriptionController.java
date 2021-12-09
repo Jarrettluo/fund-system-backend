@@ -1,14 +1,15 @@
 package com.example.fundsystembackend.controller;
 
 
+import com.example.fundsystembackend.service.ChinaMutualFundDescriptionService;
 import com.example.fundsystembackend.utils.result.ApiResult;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
 
 /**
  * <p>
@@ -22,19 +23,17 @@ import javax.annotation.Resource;
 @RequestMapping("/chinaMutualFundDescription")
 public class ChinaMutualFundDescriptionController {
 
-    // @Resource
-    // ChinaMutualFundDescriptionService chinaMutualFundDescriptionService;
+    @Autowired
+    private ChinaMutualFundDescriptionService chinaMutualFundDescriptionService;
 
     @GetMapping("/details")
     public ApiResult fundDetails(@RequestParam("windCode") String windCode) {
-        // return chinaMutualFundDescriptionService.fundDetails(windCode);
-        return null;
+        return chinaMutualFundDescriptionService.fundDetails(windCode);
     }
 
     @GetMapping("/search")
     public ApiResult searchResult(@RequestParam("keyWord") String keyWord) {
-        // return chinaMutualFundDescriptionService.searchResult(keyWord);
-        return null;
+        return chinaMutualFundDescriptionService.searchResult(keyWord);
     }
 }
 
