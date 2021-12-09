@@ -4,11 +4,7 @@ package com.example.fundsystembackend.controller;
 import com.example.fundsystembackend.service.ChinaMutualFundNavService;
 import com.example.fundsystembackend.utils.result.ApiResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -20,6 +16,7 @@ import javax.annotation.Resource;
  * @author luojiarui
  * @since 2021-12-09
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/chinaMutualFundNav")
 public class ChinaMutualFundNavController {
