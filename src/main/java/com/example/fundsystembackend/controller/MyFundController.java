@@ -4,11 +4,12 @@ package com.example.fundsystembackend.controller;
 import com.example.fundsystembackend.service.MyFundService;
 import com.example.fundsystembackend.utils.result.ApiResult;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
 
 /**
  * <p>
@@ -22,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/myFund")
 public class MyFundController {
 
-    @Autowired
+    @Resource
     MyFundService myFundService;
 
     @PostMapping("/add")

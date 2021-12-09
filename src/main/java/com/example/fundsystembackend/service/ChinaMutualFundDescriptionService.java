@@ -3,7 +3,6 @@ package com.example.fundsystembackend.service;
 import com.example.fundsystembackend.entity.ChinaMutualFundDescription;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.fundsystembackend.utils.result.ApiResult;
-import io.swagger.annotations.Api;
 
 /**
  * <p>

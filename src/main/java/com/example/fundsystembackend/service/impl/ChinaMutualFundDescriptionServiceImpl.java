@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
  * @author luojiarui
  * @since 2021-12-09
  */
-@Service
+@Service("chinaMutualFundDescriptionService")
 public class ChinaMutualFundDescriptionServiceImpl extends ServiceImpl<ChinamutualfunddescriptionMapper, ChinaMutualFundDescription> implements ChinaMutualFundDescriptionService {
 
     @Override

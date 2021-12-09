@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
  * @author luojiarui
  * @since 2021-12-09
  */
-@Service
+@Service("chinaMutualFundNavService")
 public class ChinaMutualFundNavServiceImpl extends ServiceImpl<ChinamutualfundnavMapper, Chinamutualfundnav> implements ChinaMutualFundNavService {
     @Override
     public ApiResult fundTrend(String fInfoWindcode, String period) {
