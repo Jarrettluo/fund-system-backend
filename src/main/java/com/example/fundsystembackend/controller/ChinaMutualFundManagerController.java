@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2021-12-09
  */
 @RestController
-@RequestMapping("/hirain/chinamutualfundmanager")
+@RequestMapping("/chinaMutualFundManager")
 public class ChinaMutualFundManagerController {
 
 }

@@ -4,6 +4,7 @@ import com.example.fundsystembackend.entity.ChinaMutualFundDescription;
 import com.example.fundsystembackend.mapper.ChinamutualfunddescriptionMapper;
 import com.example.fundsystembackend.service.ChinaMutualFundDescriptionService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.fundsystembackend.utils.result.ApiResult;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,4 +18,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class ChinaMutualFundDescriptionServiceImpl extends ServiceImpl<ChinamutualfunddescriptionMapper, ChinaMutualFundDescription> implements ChinaMutualFundDescriptionService {
 
+    @Override
+    public ApiResult fundDetails(String windCode) {
+        return null;
+    }
+
+    @Override
+    public ApiResult searchResult(String keyWord) {
+        return null;
+    }
 }

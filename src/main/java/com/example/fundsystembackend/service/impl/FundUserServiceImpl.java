@@ -4,6 +4,7 @@ import com.example.fundsystembackend.entity.FundUser;
 import com.example.fundsystembackend.mapper.FunduserMapper;
 import com.example.fundsystembackend.service.FundUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.fundsystembackend.utils.result.ApiResult;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,5 +17,13 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class FundUserServiceImpl extends ServiceImpl<FunduserMapper, FundUser> implements FundUserService {
+    @Override
+    public ApiResult loginUser(FundUser fundUser) {
+        return null;
+    }
 
+    @Override
+    public ApiResult logoutUser(FundUser fundUser) {
+        return null;
+    }
 }

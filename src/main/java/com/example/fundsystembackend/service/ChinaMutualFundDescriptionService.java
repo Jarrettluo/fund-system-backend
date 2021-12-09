@@ -2,6 +2,8 @@ package com.example.fundsystembackend.service;
 
 import com.example.fundsystembackend.entity.ChinaMutualFundDescription;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.example.fundsystembackend.utils.result.ApiResult;
+import io.swagger.annotations.Api;
 
 /**
  * <p>
@@ -13,4 +15,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface ChinaMutualFundDescriptionService extends IService<ChinaMutualFundDescription> {
 
+    ApiResult fundDetails(String windCode);
+    ApiResult searchResult(String keyWord);
 }
