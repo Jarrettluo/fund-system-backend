@@ -2,13 +2,13 @@ package com.example.fundsystembackend.aop;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.exceptions.JWTDecodeException;
-import com.example.demo.domain.dto.OperationLogDTO;
-import com.example.demo.domain.dto.UserDTO;
-import com.example.demo.service.OperationLogService;
-import com.example.demo.service.UserService;
-import com.example.demo.service.impl.UserServiceImpl;
-import com.example.utils.result.ApiResult;
-import com.example.utils.result.IPUtil;
+// import com.example.demo.domain.dto.OperationLogDTO;
+// import com.example.demo.domain.dto.UserDTO;
+// import com.example.demo.service.OperationLogService;
+// import com.example.demo.service.UserService;
+// import com.example.demo.service.impl.UserServiceImpl;
+import com.example.fundsystembackend.utils.result.ApiResult;
+// import com.example.utils.result.IPUtil;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
@@ -37,11 +37,11 @@ import java.util.Map;
 public class OperationLogAspect {
 
 
-    @Autowired
-    OperationLogService logDao;
-
-    @Autowired
-    UserService userService;
+    // @Autowired
+    // OperationLogService logDao;
+    //
+    // @Autowired
+    // UserService userService;
 
     private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -65,53 +65,53 @@ public class OperationLogAspect {
         // 从获取RequestAttributes中获取HttpServletRequest的信息
         HttpServletRequest request = (HttpServletRequest) requestAttributes.resolveReference(RequestAttributes.REFERENCE_REQUEST);
         try {
-            OperationLogDTO operationLog = new OperationLogDTO();
+            // OperationLogDTO operationLog = new OperationLogDTO();
             // 从切面织入点处通过反射机制获取织入点处的方法
             MethodSignature signature = (MethodSignature) joinPoint.getSignature();
             //获取切入点所在的方法
             Method method = signature.getMethod();
             //获取操作
             OperationLogAnnotation annotation = method.getAnnotation(OperationLogAnnotation.class);
-            if (annotation != null) {
-                operationLog.setModel(annotation.operModul());
-                operationLog.setType(annotation.operType());
-                operationLog.setDescription(annotation.operDesc());
-            }
+            // if (annotation != null) {
+            //     operationLog.setModel(annotation.operModul());
+            //     operationLog.setType(annotation.operType());
+            //     operationLog.setDescription(annotation.operDesc());
+            // }
             // 获取请求中的token信息
             String token = request.getHeader("token");
-            String userName = "null";
-            Long companyId = null;
-            if(token != null){
-                String userId = JWT.decode(token).getAudience().get(0);
-                UserDTO user = userService.findUserById(userId);
-                userName = user==null?"未知":user.getUsername();// 取到用户信息
-                companyId = user.getCompanyId();
-            }else {
-                UserDTO user = (UserDTO) joinPoint.getArgs()[0];
-                userName = user.getUsername();
-//                companyId = user.getCompanyId();
-            }
-            //参数,从切点出获取其参数
-            Object[] params = joinPoint.getArgs();
-            String param = "";
-
-            for (int i = 0; i < params.length; i++) {
-                param = param + params[i] + ",";
-            }
-
-            //操作时间
-            operationLog.setOperationTime(Timestamp.valueOf(sdf.format(new Date())));
-            //操作用户
-            operationLog.setUserCode(userName);
-            //操作IP
-            operationLog.setIp(IPUtil.getIpAdrress(request));
-            //返回值信息,200表示正常，不正常的是其他id
-            operationLog.setResult(result.getCode().toString());
-            // 请求参数
-            operationLog.setParams(param!=""?param:"无参数");
-            operationLog.setCompanyId(companyId);
-            //保存日志
-            logDao.save(operationLog);  // 添加车辆的token，就没有添加
+//             String userName = "null";
+//             Long companyId = null;
+//             if(token != null){
+//                 String userId = JWT.decode(token).getAudience().get(0);
+//                 UserDTO user = userService.findUserById(userId);
+//                 userName = user==null?"未知":user.getUsername();// 取到用户信息
+//                 companyId = user.getCompanyId();
+//             }else {
+//                 UserDTO user = (UserDTO) joinPoint.getArgs()[0];
+//                 userName = user.getUsername();
+// //                companyId = user.getCompanyId();
+//             }
+//             //参数,从切点出获取其参数
+//             Object[] params = joinPoint.getArgs();
+//             String param = "";
+//
+//             for (int i = 0; i < params.length; i++) {
+//                 param = param + params[i] + ",";
+//             }
+//
+//             //操作时间
+//             operationLog.setOperationTime(Timestamp.valueOf(sdf.format(new Date())));
+//             //操作用户
+//             operationLog.setUserCode(userName);
+//             //操作IP
+//             operationLog.setIp(IPUtil.getIpAdrress(request));
+//             //返回值信息,200表示正常，不正常的是其他id
+//             operationLog.setResult(result.getCode().toString());
+//             // 请求参数
+//             operationLog.setParams(param!=""?param:"无参数");
+//             operationLog.setCompanyId(companyId);
+//             //保存日志
+//             logDao.save(operationLog);  // 添加车辆的token，就没有添加
 
         } catch (Exception e) {
             e.printStackTrace();

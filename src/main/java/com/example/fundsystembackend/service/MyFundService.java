@@ -16,5 +16,6 @@ public interface MyFundService extends IService<MyFund> {
 
     ApiResult addFund(String fundId, String userId);
     ApiResult deleteFund(String fundId, String userId);
+    ApiResult fundList(String userId);
 
 }

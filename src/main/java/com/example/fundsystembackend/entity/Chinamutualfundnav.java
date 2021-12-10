@@ -40,7 +40,6 @@ public class Chinamutualfundnav implements Serializable {
 
     /**
      * 单位净值
-
      */
     private Float fNavUnit;
 

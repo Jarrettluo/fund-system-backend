@@ -32,16 +32,19 @@ public class ChinaMutualFundDescriptionServiceImpl extends ServiceImpl<Chinamutu
             return ApiResult.error(1201, "winCode参数不正确");
         }
         ChinaMutualFundDescription chinaMutualFundDescription = chinamutualfunddescriptionMapper.selectOne(
-                new QueryWrapper<ChinaMutualFundDescription>()
+                new QueryWrapper<ChinaMutualFundDescription>().eq("wind_code", windCode)
         );
+        if(chinaMutualFundDescription==null) {
+            return ApiResult.error(1202, "查找失败");
+        }
 
-        return null;
+        return ApiResult.success(chinaMutualFundDescription);
     }
 
     @Override
     public ApiResult searchResult(String keyWord) {
         List<ChinaMutualFundDescription> chinaMutualFundDescriptionList = chinamutualfunddescriptionMapper.selectList(
-                new QueryWrapper<ChinaMutualFundDescription>().eq("dsf", keyWord)
+                new QueryWrapper<ChinaMutualFundDescription>().like("wind_code", keyWord)
         );
         if(chinaMutualFundDescriptionList!=null || chinaMutualFundDescriptionList.size()>0){
             return ApiResult.success(chinaMutualFundDescriptionList);

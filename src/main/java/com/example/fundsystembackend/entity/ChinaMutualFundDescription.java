@@ -1,7 +1,9 @@
 package com.example.fundsystembackend.entity;
 
-import java.time.LocalDateTime;
 import java.io.Serializable;
+import java.sql.Time;
+import java.util.List;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -23,13 +25,39 @@ public class ChinaMutualFundDescription implements Serializable {
 
     private Integer objectId;
 
+    /**
+     * Wind代码
+     */
+    private String fInfoWindCode;
+
+    /**
+     * 全称
+     */
     private String fInfoFullname;
 
     private String fInfoFrontCode;
 
     private String fInfoBackendCode;
 
-    private LocalDateTime fInfoSetupdate;
+    /**
+     * 成立时间
+     */
+    private Time fInfoSetupdate;
+
+    /**
+     * 基金经理
+     */
+    private List<ChinaMutualFundManager> chinaMutualFundManagerList;
+
+    /**
+     * 最新单位净值
+     */
+    private Float newNavUnit;
+
+    /**
+     * 最新涨跌幅
+     */
+    private Float newPercent;
 
 
 }

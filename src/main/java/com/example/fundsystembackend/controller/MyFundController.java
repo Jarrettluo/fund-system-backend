@@ -6,7 +6,6 @@ import com.example.fundsystembackend.utils.result.ApiResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
 
 /**
  * <p>
@@ -34,6 +33,11 @@ public class MyFundController {
     public ApiResult deleteFund(@RequestBody String fundId,
                              @RequestBody String userId) {
         return myFundService.deleteFund(fundId, userId);
+    }
+
+    @GetMapping("/list")
+    public ApiResult fundList(@RequestParam("userId") String userId) {
+        return myFundService.fundList(userId);
     }
 
 }

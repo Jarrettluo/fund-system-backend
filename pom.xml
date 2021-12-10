@@ -99,6 +99,21 @@
         </dependency>
 
 
+<!--         Spring Boot JDBC -->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-jdbc</artifactId>-->
+<!--        </dependency>-->
+<!--         oracle -->
+<!--        <dependency>-->
+<!--            <groupId>com.oracle</groupId>-->
+<!--            <artifactId>ojdbc8</artifactId>-->
+<!--            <version>12.2.0.1</version>-->
+<!--            <scope>runtime</scope>-->
+<!--        </dependency>-->
+
+
+
 
     </dependencies>
 

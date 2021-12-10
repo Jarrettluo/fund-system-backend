@@ -1,16 +1,13 @@
 package com.example.fundsystembackend.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.example.fundsystembackend.entity.ChinaMutualFundDescription;
 import com.example.fundsystembackend.entity.Chinamutualfundnav;
-import com.example.fundsystembackend.mapper.ChinamutualfunddescriptionMapper;
 import com.example.fundsystembackend.mapper.ChinamutualfundnavMapper;
 import com.example.fundsystembackend.service.ChinaMutualFundNavService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.fundsystembackend.utils.result.ApiResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.Mapping;
 
 import java.util.List;
 

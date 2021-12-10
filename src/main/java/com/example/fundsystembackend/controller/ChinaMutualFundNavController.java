@@ -5,9 +5,6 @@ import com.example.fundsystembackend.service.ChinaMutualFundNavService;
 import com.example.fundsystembackend.utils.result.ApiResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import javax.annotation.Resource;
-
 /**
  * <p>
  *  前端控制器
