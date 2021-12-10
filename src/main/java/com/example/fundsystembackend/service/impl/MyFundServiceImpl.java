@@ -139,14 +139,19 @@ public class MyFundServiceImpl extends ServiceImpl<MyfundMapper, Myfund> impleme
         for (Chinamutualfunddescription chinaMutualFundDescription : chinamutualfunddescriptions) {
             String fInfoCode = chinaMutualFundDescription.getFInfoWindCode();
 
-            List<Chinamutualfundnav> chinamutualfundnavList =
-                    chinamutualfundnavMapper.selectList(
-                            new QueryWrapper<Chinamutualfundnav>().eq("f_info_wind_code", fInfoCode)
-                    );
-            System.out.println(chinamutualfundnavList);
-            if (chinamutualfundnavList != null && chinamutualfundnavList.size() > 0) {
-                chinaMutualFundDescription.setNewNavUnit(chinamutualfundnavList.get(0).getFNavUnit());
+            // 查找该基金最近两天的情况
+            List<Chinamutualfundnav> chinamutualfundnavList = chinamutualfundnavMapper.selectList(
+                    new QueryWrapper<Chinamutualfundnav>()
+                            .eq("f_info_wind_code",fInfoCode)
+                            .last("limit 2")
+            );
+            Float lastPrice = chinamutualfundnavList.get(0).getFNavUnit();
+            if(chinamutualfundnavList.size() == 2){
+                Float endPrice = chinamutualfundnavList.get(1).getFNavUnit();
+                Float percent = (lastPrice - endPrice)/endPrice;
+                chinaMutualFundDescription.setNewPercent(percent);
             }
+            chinaMutualFundDescription.setNewNavUnit(lastPrice);
         }
         return ApiResult.success(chinamutualfunddescriptions);
     }
