@@ -1,6 +1,7 @@
 package com.example.fundsystembackend.controller;
 
 
+import com.example.fundsystembackend.entity.Myfund;
 import com.example.fundsystembackend.service.MyFundService;
 import com.example.fundsystembackend.utils.result.ApiResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,15 +25,13 @@ public class MyFundController {
     private MyFundService myFundService;
 
     @PostMapping("/add")
-    public ApiResult addFund(@RequestBody String fundId,
-                             @RequestBody String userId) {
-        return myFundService.addFund(fundId, userId);
+    public ApiResult addFund(@RequestBody Myfund myfund) {
+        return myFundService.addFund(myfund);
     }
 
     @PostMapping("/delete")
-    public ApiResult deleteFund(@RequestBody String fundId,
-                             @RequestBody String userId) {
-        return myFundService.deleteFund(fundId, userId);
+    public ApiResult deleteFund(@RequestBody Myfund myfund) {
+        return myFundService.deleteFund(myfund);
     }
 
     @GetMapping("/list")

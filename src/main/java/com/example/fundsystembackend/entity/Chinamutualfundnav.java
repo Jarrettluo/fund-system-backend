@@ -26,7 +26,7 @@ public class Chinamutualfundnav implements Serializable {
     /**
      * Wind代码
      */
-    private String fInfoWindcode;
+    private String fInfoWindCode;
 
     /**
      * 公告日期

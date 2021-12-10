@@ -1,6 +1,6 @@
 package com.example.fundsystembackend.mapper;
 
-import com.example.fundsystembackend.entity.FundUser;
+import com.example.fundsystembackend.entity.Funduser;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -14,6 +14,6 @@ import org.apache.ibatis.annotations.Mapper;
  */
 
 @Mapper
-public interface FunduserMapper extends BaseMapper<FundUser> {
+public interface FunduserMapper extends BaseMapper<Funduser> {
 
 }

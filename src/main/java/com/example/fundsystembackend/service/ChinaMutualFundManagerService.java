@@ -1,6 +1,6 @@
 package com.example.fundsystembackend.service;
 
-import com.example.fundsystembackend.entity.ChinaMutualFundManager;
+import com.example.fundsystembackend.entity.Chinamutualfundmanager;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author luojiarui
  * @since 2021-12-09
  */
-public interface ChinaMutualFundManagerService extends IService<ChinaMutualFundManager> {
+public interface ChinaMutualFundManagerService extends IService<Chinamutualfundmanager> {
 
 }

@@ -1,6 +1,6 @@
 package com.example.fundsystembackend.service;
 
-import com.example.fundsystembackend.entity.FundUser;
+import com.example.fundsystembackend.entity.Funduser;
 
 /**
  * @Author Jarrett Luo
@@ -8,5 +8,5 @@ import com.example.fundsystembackend.entity.FundUser;
  * @Version 1.0
  */
 public interface TokenService {
-    String getToken(FundUser fundUser);
+    String getToken(Funduser fundUser);
 }

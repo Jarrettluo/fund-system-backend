@@ -1,6 +1,6 @@
 package com.example.fundsystembackend.mapper;
 
-import com.example.fundsystembackend.entity.ChinaMutualFundManager;
+import com.example.fundsystembackend.entity.Chinamutualfundmanager;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -14,6 +14,6 @@ import org.apache.ibatis.annotations.Mapper;
  */
 
 @Mapper
-public interface ChinamutualfundmanagerMapper extends BaseMapper<ChinaMutualFundManager> {
+public interface ChinamutualfundmanagerMapper extends BaseMapper<Chinamutualfundmanager> {
 
 }

@@ -16,15 +16,17 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class MyFund implements Serializable {
+public class Chinamutualfundmanager implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private String id;
+    private String objectId;
 
-    private String userId;
+    private String fInfoWindcode;
 
-    private String fundId;
+    private String fInfoFundmanager;
+
+    private String fInfoManagerGender;
 
 
 }

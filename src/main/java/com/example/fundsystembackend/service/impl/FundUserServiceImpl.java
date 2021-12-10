@@ -1,7 +1,7 @@
 package com.example.fundsystembackend.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.example.fundsystembackend.entity.FundUser;
+import com.example.fundsystembackend.entity.Funduser;
 import com.example.fundsystembackend.mapper.FunduserMapper;
 import com.example.fundsystembackend.service.FundUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
  * @since 2021-12-09
  */
 @Service
-public class FundUserServiceImpl extends ServiceImpl<FunduserMapper, FundUser> implements FundUserService {
+public class FundUserServiceImpl extends ServiceImpl<FunduserMapper, Funduser> implements FundUserService {
 
     @Autowired
     private FunduserMapper funduserMapper;
@@ -28,11 +28,11 @@ public class FundUserServiceImpl extends ServiceImpl<FunduserMapper, FundUser> i
     TokenService tokenService;
 
     @Override
-    public ApiResult loginUser(FundUser fundUser) {
+    public ApiResult loginUser(Funduser fundUser) {
         if(fundUser.getUserName() == null || fundUser.getUserPassword() == null) {
             return ApiResult.error(1201, "参数不足");
         }
-        FundUser dbFundUser = funduserMapper.selectOne(new QueryWrapper<FundUser>()
+        Funduser dbFundUser = funduserMapper.selectOne(new QueryWrapper<Funduser>()
                 .eq("user_name", fundUser.getUserName()));
         if(dbFundUser == null) {
             return ApiResult.error(1201,"登录失败,用户不存在");
@@ -48,12 +48,12 @@ public class FundUserServiceImpl extends ServiceImpl<FunduserMapper, FundUser> i
     }
 
     @Override
-    public ApiResult logoutUser(FundUser fundUser) {
+    public ApiResult logoutUser(Funduser fundUser) {
         return null;
     }
 
     @Override
-    public ApiResult register(FundUser fundUser) {
+    public ApiResult register(Funduser fundUser) {
         if(fundUser.getUserId() == null || fundUser.getUserId().equals("")) {
             return ApiResult.error(1201, "userId不能为空");
         }

@@ -1,7 +1,7 @@
 package com.example.fundsystembackend.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.example.fundsystembackend.entity.ChinaMutualFundDescription;
+import com.example.fundsystembackend.entity.Chinamutualfunddescription;
 import com.example.fundsystembackend.mapper.ChinamutualfunddescriptionMapper;
 import com.example.fundsystembackend.service.ChinaMutualFundDescriptionService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -21,7 +21,7 @@ import java.util.List;
  * @since 2021-12-09
  */
 @Service("chinaMutualFundDescriptionService")
-public class ChinaMutualFundDescriptionServiceImpl extends ServiceImpl<ChinamutualfunddescriptionMapper, ChinaMutualFundDescription> implements ChinaMutualFundDescriptionService {
+public class ChinaMutualFundDescriptionServiceImpl extends ServiceImpl<ChinamutualfunddescriptionMapper, Chinamutualfunddescription> implements ChinaMutualFundDescriptionService {
 
     @Autowired
     private ChinamutualfunddescriptionMapper chinamutualfunddescriptionMapper;
@@ -31,8 +31,8 @@ public class ChinaMutualFundDescriptionServiceImpl extends ServiceImpl<Chinamutu
         if(windCode==null || windCode.equals("")){
             return ApiResult.error(1201, "winCode参数不正确");
         }
-        ChinaMutualFundDescription chinaMutualFundDescription = chinamutualfunddescriptionMapper.selectOne(
-                new QueryWrapper<ChinaMutualFundDescription>().eq("wind_code", windCode)
+        Chinamutualfunddescription chinaMutualFundDescription = chinamutualfunddescriptionMapper.selectOne(
+                new QueryWrapper<Chinamutualfunddescription>().eq("wind_code", windCode)
         );
         if(chinaMutualFundDescription==null) {
             return ApiResult.error(1202, "查找失败");
@@ -43,14 +43,14 @@ public class ChinaMutualFundDescriptionServiceImpl extends ServiceImpl<Chinamutu
 
     @Override
     public ApiResult searchResult(String keyWord) {
-        List<ChinaMutualFundDescription> chinaMutualFundDescriptionList = chinamutualfunddescriptionMapper.selectList(
-                new QueryWrapper<ChinaMutualFundDescription>().like("wind_code", keyWord)
+        List<Chinamutualfunddescription> chinamutualfunddescriptionList = chinamutualfunddescriptionMapper.selectList(
+                new QueryWrapper<Chinamutualfunddescription>().like("wind_code", keyWord)
         );
-        if(chinaMutualFundDescriptionList!=null || chinaMutualFundDescriptionList.size()>0){
-            return ApiResult.success(chinaMutualFundDescriptionList);
+        if(chinamutualfunddescriptionList !=null || chinamutualfunddescriptionList.size()>0){
+            return ApiResult.success(chinamutualfunddescriptionList);
         }else {
-            List<ChinaMutualFundDescription> chinaMutualFundDescriptions = new ArrayList<>();
-            return ApiResult.success(chinaMutualFundDescriptions);
+            List<Chinamutualfunddescription> chinamutualfunddescriptions = new ArrayList<>();
+            return ApiResult.success(chinamutualfunddescriptions);
         }
     }
 }

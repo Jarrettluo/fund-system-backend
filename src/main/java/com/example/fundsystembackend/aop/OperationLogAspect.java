@@ -48,7 +48,7 @@ public class OperationLogAspect {
     /**
      * 设置操作日志切入点   在注解的位置切入代码
      */
-    @Pointcut("@annotation(com.example.demo.aop.OperationLogAnnotation)")
+    @Pointcut("@annotation(com.example.fundsystembackend.aop.OperationLogAnnotation)")
     public void operLogPoinCut() {
     }
 

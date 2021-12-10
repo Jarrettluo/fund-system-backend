@@ -1,6 +1,6 @@
 package com.example.fundsystembackend.service;
 
-import com.example.fundsystembackend.entity.MyFund;
+import com.example.fundsystembackend.entity.Myfund;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.fundsystembackend.utils.result.ApiResult;
 
@@ -12,10 +12,10 @@ import com.example.fundsystembackend.utils.result.ApiResult;
  * @author luojiarui
  * @since 2021-12-09
  */
-public interface MyFundService extends IService<MyFund> {
+public interface MyFundService extends IService<Myfund> {
 
-    ApiResult addFund(String fundId, String userId);
-    ApiResult deleteFund(String fundId, String userId);
+    ApiResult addFund(Myfund myfund);
+    ApiResult deleteFund(Myfund myfund);
     ApiResult fundList(String userId);
 
 }
