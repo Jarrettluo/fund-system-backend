@@ -2,6 +2,8 @@ package com.example.fundsystembackend.entity;
 
 import java.time.LocalDate;
 import java.io.Serializable;
+
+import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -47,6 +49,12 @@ public class Chinamutualfundnav implements Serializable {
      * 累计净值
      */
     private Float fNavAccumulated;
+
+    /**
+     * 价格涨跌幅
+     */
+    @TableField(exist = false)
+    private Float pricePercent;
 
 
 }
