@@ -31,11 +31,12 @@ DROP TABLE IF EXISTS `chinamutualfunddescription`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `chinamutualfunddescription` (
-  `object_id` int(11) NOT NULL,
-  `f_info_fullname` varchar(100) DEFAULT NULL,
-  `f_info_front_code` varchar(45) DEFAULT NULL,
-  `f_info_backend_code` varchar(45) DEFAULT NULL,
+  `object_id` int(11) NOT NULL COMMENT '基金对象ID',
+  `f_info_fullname` varchar(100) DEFAULT NULL COMMENT '基金名称',
+  `f_info_front_code` varchar(45) DEFAULT NULL COMMENT '前端代码',
+  `f_info_backend_code` varchar(45) DEFAULT NULL COMMENT '后端代码',
   `f_info_setupdate` datetime DEFAULT NULL,
+  `f_info_wind_code` varchar(45) DEFAULT NULL COMMENT 'Wind代码',
   PRIMARY KEY (`object_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -46,6 +47,7 @@ CREATE TABLE `chinamutualfunddescription` (
 
 LOCK TABLES `chinamutualfunddescription` WRITE;
 /*!40000 ALTER TABLE `chinamutualfunddescription` DISABLE KEYS */;
+INSERT INTO `chinamutualfunddescription` VALUES (1,'富国中证消费500ETF连接A','008975',NULL,'2021-10-10 00:00:00','008975');
 /*!40000 ALTER TABLE `chinamutualfunddescription` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -58,9 +60,9 @@ DROP TABLE IF EXISTS `chinamutualfundmanager`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `chinamutualfundmanager` (
   `object_id` varchar(100) NOT NULL,
-  `f_info_windcode` varchar(45) DEFAULT NULL,
-  `f_info_fundmanager` varchar(45) DEFAULT NULL,
-  `f_info_manager_gender` varchar(10) DEFAULT NULL,
+  `f_info_windcode` varchar(45) DEFAULT NULL COMMENT 'Wind代码',
+  `f_info_fundmanager` varchar(45) DEFAULT NULL COMMENT '姓名',
+  `f_info_manager_gender` varchar(10) DEFAULT NULL COMMENT '性别',
   PRIMARY KEY (`object_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -71,6 +73,7 @@ CREATE TABLE `chinamutualfundmanager` (
 
 LOCK TABLES `chinamutualfundmanager` WRITE;
 /*!40000 ALTER TABLE `chinamutualfundmanager` DISABLE KEYS */;
+INSERT INTO `chinamutualfundmanager` VALUES ('1','008975','徐优化','男');
 /*!40000 ALTER TABLE `chinamutualfundmanager` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -83,7 +86,7 @@ DROP TABLE IF EXISTS `chinamutualfundnav`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `chinamutualfundnav` (
   `object_id` varchar(100) NOT NULL,
-  `f_info_windcode` varchar(45) DEFAULT NULL COMMENT 'Wind代码',
+  `f_info_wind_code` varchar(45) DEFAULT NULL COMMENT 'Wind代码',
   `ann_date` date DEFAULT NULL COMMENT '公告日期',
   `price_date` date DEFAULT NULL COMMENT '截至日期',
   `f_nav_unit` float DEFAULT NULL COMMENT '单位净值\n',
@@ -98,6 +101,7 @@ CREATE TABLE `chinamutualfundnav` (
 
 LOCK TABLES `chinamutualfundnav` WRITE;
 /*!40000 ALTER TABLE `chinamutualfundnav` DISABLE KEYS */;
+INSERT INTO `chinamutualfundnav` VALUES ('1','008975','2021-10-10','2021-10-10',1.9088,1.879),('2','008975','2021-10-11','2021-10-11',1.8888,1.8);
 /*!40000 ALTER TABLE `chinamutualfundnav` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -125,6 +129,7 @@ CREATE TABLE `funduser` (
 
 LOCK TABLES `funduser` WRITE;
 /*!40000 ALTER TABLE `funduser` DISABLE KEYS */;
+INSERT INTO `funduser` VALUES ('1','luojiarui','123456','123456','2021-10-10 10:00:00','1');
 /*!40000 ALTER TABLE `funduser` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -136,11 +141,11 @@ DROP TABLE IF EXISTS `myfund`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `myfund` (
-  `id` varchar(10) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` varchar(10) DEFAULT NULL,
   `fund_id` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -149,6 +154,7 @@ CREATE TABLE `myfund` (
 
 LOCK TABLES `myfund` WRITE;
 /*!40000 ALTER TABLE `myfund` DISABLE KEYS */;
+INSERT INTO `myfund` VALUES (4,'1','1');
 /*!40000 ALTER TABLE `myfund` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -161,4 +167,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-09 12:00:19
+-- Dump completed on 2021-12-10 20:18:46
