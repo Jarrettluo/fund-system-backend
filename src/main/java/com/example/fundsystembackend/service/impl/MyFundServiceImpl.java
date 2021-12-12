@@ -50,7 +50,7 @@ public class MyFundServiceImpl extends ServiceImpl<MyfundMapper, Myfund> impleme
             return ApiResult.error(1201, "userId不能为空");
         }
         Funduser fundUser = funduserMapper.selectOne(
-                new QueryWrapper<Funduser>().eq("user_id", myfund.getUserId())
+                new QueryWrapper<Funduser>().eq("user_id", Integer.parseInt(myfund.getUserId()))
         );
         if(fundUser==null) {
             return ApiResult.error(1202, "该用户不存在");
@@ -64,7 +64,7 @@ public class MyFundServiceImpl extends ServiceImpl<MyfundMapper, Myfund> impleme
         String fundId = myfund.getFundId();
         String userId = myfund.getUserId();
         List<Myfund> mySelectedFundList = myfundMapper.selectList(
-                new QueryWrapper<Myfund>().select("fund_id", fundId).eq("user_id", userId));
+                new QueryWrapper<Myfund>().select("fund_id", fundId).eq("user_id", Integer.parseInt(userId)));
         if(mySelectedFundList != null && mySelectedFundList.size() > 0) {
             return ApiResult.error(1203, "重复选择");
         }

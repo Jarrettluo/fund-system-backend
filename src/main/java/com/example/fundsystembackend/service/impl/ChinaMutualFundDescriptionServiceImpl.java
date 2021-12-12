@@ -76,7 +76,7 @@ public class ChinaMutualFundDescriptionServiceImpl extends ServiceImpl<Chinamutu
     }
 
     @Override
-    public ApiResult searchResult(String keyWord) {
+    public ApiResult searchResult(String keyWord, String userId) {
         List<Chinamutualfunddescription> chinamutualfunddescriptionList = chinamutualfunddescriptionMapper.selectList(
                 new QueryWrapper<Chinamutualfunddescription>().like("f_info_wind_code", keyWord)
         );
@@ -89,7 +89,8 @@ public class ChinaMutualFundDescriptionServiceImpl extends ServiceImpl<Chinamutu
                 chinamutualfunddescription.setChinamutualfundmanagers(chinamutualfundmanagerList);
 
                 List<Myfund> myfunds = myfundMapper.selectList(
-                        new QueryWrapper<Myfund>().eq("fund_id", chinamutualfunddescription.getObjectId()));
+                        new QueryWrapper<Myfund>().eq("fund_id", chinamutualfunddescription.getObjectId())
+                .eq("user_id", userId));
                 if(myfunds != null && myfunds.size() > 0) {
                     chinamutualfunddescription.setSelected(true);
                 }else {

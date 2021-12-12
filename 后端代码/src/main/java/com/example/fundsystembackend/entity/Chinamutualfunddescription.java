@@ -64,5 +64,17 @@ public class Chinamutualfunddescription implements Serializable {
     @TableField(exist = false)
     private Float newPercent;
 
+    /**
+     * 基金的经理人
+     */
+    @TableField(exist = false)
+    private List<Chinamutualfundmanager> chinamutualfundmanagers;
+
+    /**
+     * 是否被选择
+     */
+    @TableField(exist = false)
+    private boolean isSelected;
+
 
 }

@@ -1,15 +1,20 @@
 package com.example.fundsystembackend.interceptor;
 
 import com.auth0.jwt.JWT;
-// import com.auth0.jwt.JWTVerifier;
+ import com.auth0.jwt.JWTVerifier;
 // import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.fundsystembackend.annotation.PassToken;
 import com.example.fundsystembackend.annotation.UserLoginToken;
 // import com.example.fundsystembackend.domain.dto.UserDTO;
 // import com.example.fundsystembackend.service.UserService;
 // import org.springframework.beans.factory.annotation.Autowired;
+import com.example.fundsystembackend.entity.Funduser;
+import com.example.fundsystembackend.mapper.FunduserMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -23,6 +28,9 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
     // @Autowired
     // UserService userService;
 
+    @Autowired
+    private FunduserMapper funduserMapper;
+
     public void crossDomain(HttpServletRequest request, HttpServletResponse response) {
         response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
         response.setHeader("Access-Control-Allow-Credentials", "true");
@@ -33,7 +41,6 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object object) throws Exception {
-//        crossDomain(httpServletRequest, httpServletResponse);
         String token = httpServletRequest.getHeader("token");// 从 http 请求头中取出 token
         // 如果不是映射到方法直接通过
         if(!(object instanceof HandlerMethod)){
@@ -63,15 +70,17 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
                 } catch (JWTDecodeException j) {
                     throw new RuntimeException("401");
                 }
-                // UserDTO user = userService.findUserById(userId);
-                // if (user == null) {
-                //     throw new RuntimeException("用户不存在，请重新登录");
-                // }
-                // 验证 token
-                // JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(user.getPassword())).build();
-
+                Funduser user = funduserMapper.selectOne(
+                        new QueryWrapper<Funduser>().eq("user_id", userId)
+                );
+                 if (user == null) {
+                     throw new RuntimeException("用户不存在，请重新登录");
+                 }
+//                 验证 token
+                 JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(user.getUserPassword())).build();
+                System.out.println(jwtVerifier.toString());
                 try {
-                    // jwtVerifier.verify(token);
+                     jwtVerifier.verify(token);
                 } catch (JWTVerificationException e) {
                     throw new RuntimeException("401");
                 }

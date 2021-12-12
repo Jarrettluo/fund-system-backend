@@ -1,6 +1,7 @@
 package com.example.fundsystembackend.controller;
 
 
+import com.example.fundsystembackend.annotation.UserLoginToken;
 import com.example.fundsystembackend.service.ChinaMutualFundNavService;
 import com.example.fundsystembackend.utils.result.ApiResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ public class ChinaMutualFundNavController {
     @Autowired
     private ChinaMutualFundNavService chinaMutualFundNavService;
 
+    @UserLoginToken
     @GetMapping("/trend")
     public ApiResult fundTrend(@RequestParam(value = "fInfoWindcode") String fInfoWindcode,
                                @RequestParam(value = "period") String period) {

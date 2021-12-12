@@ -15,5 +15,5 @@ import com.example.fundsystembackend.utils.result.ApiResult;
 public interface ChinaMutualFundDescriptionService extends IService<Chinamutualfunddescription> {
 
     ApiResult fundDetails(String windCode);
-    ApiResult searchResult(String keyWord);
+    ApiResult searchResult(String keyWord, String userId);
 }

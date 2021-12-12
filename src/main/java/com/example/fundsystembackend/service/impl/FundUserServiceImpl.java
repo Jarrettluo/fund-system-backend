@@ -40,9 +40,10 @@ public class FundUserServiceImpl extends ServiceImpl<FunduserMapper, Funduser> i
         if(!dbFundUser.getUserPassword().equals(fundUser.getUserPassword())) {
             return ApiResult.error(1202, "登录失败,密码错误");
         }
-
-        String token = tokenService.getToken(fundUser);
-        return ApiResult.success(token);
+        System.out.println(dbFundUser.toString());
+        String token = tokenService.getToken(dbFundUser);
+        dbFundUser.setToken(token);
+        return ApiResult.success(dbFundUser);
 
 
     }
@@ -54,9 +55,6 @@ public class FundUserServiceImpl extends ServiceImpl<FunduserMapper, Funduser> i
 
     @Override
     public ApiResult register(Funduser fundUser) {
-        if(fundUser.getUserId() == null || fundUser.getUserId().equals("")) {
-            return ApiResult.error(1201, "userId不能为空");
-        }
         if(fundUser.getUserName() == null || fundUser.getUserName().equals("")){
             return ApiResult.error(1201, "uername不能为空");
         }
@@ -65,6 +63,11 @@ public class FundUserServiceImpl extends ServiceImpl<FunduserMapper, Funduser> i
         }
         if(fundUser.getUserTelephone() == null || fundUser.getUserTelephone().equals("")) {
             return ApiResult.error(1201, "telephone不能为空");
+        }
+        Funduser dbFundUser = funduserMapper.selectOne(new QueryWrapper<Funduser>()
+                .eq("user_name", fundUser.getUserName()));
+        if(dbFundUser != null) {
+            return ApiResult.error(1202,"用户名已经存在，不可注册");
         }
         funduserMapper.insert(fundUser);
         return ApiResult.success("success");

@@ -33,11 +33,23 @@ public class ChinaMutualFundNavServiceImpl extends ServiceImpl<Chinamutualfundna
         if(period == null || period.equals("")){
             return ApiResult.error(1201, "period参数错误");
         }
-
+        Integer periodInt = Integer.parseInt(period);
+        String sql = "limit " + periodInt * 10;
+        // 限制取到特定数量的基金净值信息
         List<Chinamutualfundnav> chinamutualfundnavList = chinamutualfundnavMapper.selectList(
-                new QueryWrapper<Chinamutualfundnav>().eq("d",23)
+                new QueryWrapper<Chinamutualfundnav>()
+                        .eq("f_info_wind_code",fInfoWindcode)
+                        .last(sql)
         );
         if(chinamutualfundnavList!=null || chinamutualfundnavList.size()>0) {
+            // 从这里计算每只基金的
+            Integer navListSize = chinamutualfundnavList.size();
+            Float rootPrice = chinamutualfundnavList.get(navListSize - 1).getFNavUnit();
+            for(int i = navListSize - 2; i >= 0; i--) {
+                Float detaPercent = (chinamutualfundnavList.get(i).getFNavUnit() - rootPrice)/rootPrice;
+                chinamutualfundnavList.get(i).setPricePercent(detaPercent);
+                rootPrice = chinamutualfundnavList.get(i).getFNavUnit();
+            }
             return ApiResult.success(chinamutualfundnavList);
         }else {
             return ApiResult.error(1202, "查询失败");

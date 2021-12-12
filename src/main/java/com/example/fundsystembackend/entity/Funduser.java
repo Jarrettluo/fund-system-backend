@@ -2,6 +2,8 @@ package com.example.fundsystembackend.entity;
 
 import java.time.LocalDateTime;
 import java.io.Serializable;
+
+import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -50,6 +52,12 @@ public class Funduser implements Serializable {
      * 用户状态0正常 1冻结
      */
     private String userState;
+
+    /**
+     * 用户token信息
+     */
+    @TableField(exist = false)
+    private String token;
 
 
 }

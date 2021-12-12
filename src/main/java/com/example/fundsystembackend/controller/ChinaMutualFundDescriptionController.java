@@ -1,6 +1,7 @@
 package com.example.fundsystembackend.controller;
 
 
+import com.example.fundsystembackend.annotation.UserLoginToken;
 import com.example.fundsystembackend.service.ChinaMutualFundDescriptionService;
 import com.example.fundsystembackend.utils.result.ApiResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,14 +24,17 @@ public class ChinaMutualFundDescriptionController {
     @Autowired
     private ChinaMutualFundDescriptionService chinaMutualFundDescriptionService;
 
+    @UserLoginToken
     @GetMapping("/details")
     public ApiResult fundDetails(@RequestParam("windCode") String windCode) {
         return chinaMutualFundDescriptionService.fundDetails(windCode);
     }
 
+    @UserLoginToken
     @GetMapping("/search")
-    public ApiResult searchResult(@RequestParam("keyWord") String keyWord) {
-        return chinaMutualFundDescriptionService.searchResult(keyWord);
+    public ApiResult searchResult(@RequestParam("keyWord") String keyWord,
+                                  @RequestParam String userId) {
+        return chinaMutualFundDescriptionService.searchResult(keyWord,  userId);
     }
 }
 
