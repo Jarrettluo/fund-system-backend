@@ -99,7 +99,6 @@ public class MyFundServiceImpl extends ServiceImpl<MyfundMapper, Myfund> impleme
         }
         List<Myfund> mySelectedFundList = myfundMapper.selectList(
                 new QueryWrapper<Myfund>().eq("fund_id", fundId).eq("user_id", userId));
-        System.out.println(mySelectedFundList);
         if(mySelectedFundList != null && mySelectedFundList.size() > 0) {
             for (Myfund myfund1 : mySelectedFundList) {
                 myfundMapper.deleteById(myfund1.getId());
@@ -133,7 +132,6 @@ public class MyFundServiceImpl extends ServiceImpl<MyfundMapper, Myfund> impleme
         for (Myfund myFund : mySelectedFundList) {
             Chinamutualfunddescription myFundDesc = chinamutualfunddescriptionMapper.selectOne(
                     new QueryWrapper<Chinamutualfunddescription>().eq("object_id", myFund.getFundId()));
-            System.out.println(myFundDesc.toString());
             chinamutualfunddescriptions.add(myFundDesc);
         }
         for (Chinamutualfunddescription chinaMutualFundDescription : chinamutualfunddescriptions) {

@@ -2,16 +2,12 @@ package com.example.fundsystembackend.interceptor;
 
 import com.auth0.jwt.JWT;
  import com.auth0.jwt.JWTVerifier;
-// import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.fundsystembackend.annotation.PassToken;
 import com.example.fundsystembackend.annotation.UserLoginToken;
-// import com.example.fundsystembackend.domain.dto.UserDTO;
-// import com.example.fundsystembackend.service.UserService;
-// import org.springframework.beans.factory.annotation.Autowired;
 import com.example.fundsystembackend.entity.Funduser;
 import com.example.fundsystembackend.mapper.FunduserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,7 +74,6 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
                  }
 //                 验证 token
                  JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(user.getUserPassword())).build();
-                System.out.println(jwtVerifier.toString());
                 try {
                      jwtVerifier.verify(token);
                 } catch (JWTVerificationException e) {
